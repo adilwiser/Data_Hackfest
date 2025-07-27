@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is Zero-Knowledge Proof?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #0a0a0a;
+            --text-color: #00ff00;
+            --primary-color: #ff00ff;
+            --secondary-color: #ffff00;
+            --border-color: #00ff00;
+        }
+        body {
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 700px;
+            background: #1a1a1a;
+            border: 4px solid var(--border-color);
+            padding: 40px 20px;
+        }
+        h1 {
+            color: var(--secondary-color);
+            text-shadow: 4px 4px 0px var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .explain {
+            font-size: 1.1em;
+            margin: 30px 0 20px 0;
+        }
+        .button {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: 4px solid var(--border-color);
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            margin-top: 30px;
+        }
+        .zkp-animation {
+            margin: 30px 0 10px 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 40px;
+        }
+        .user, .server {
+            width: 120px;
+            height: 120px;
+            background: #222;
+            border: 4px solid var(--primary-color);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1em;
+            color: var(--secondary-color);
+            position: relative;
+        }
+        .user:before {
+            content: 'User';
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--primary-color);
+            font-size: 0.9em;
+        }
+        .server:before {
+            content: 'Server';
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--primary-color);
+            font-size: 0.9em;
+        }
+        .arrow {
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            position: relative;
+            margin: 0 10px;
+            align-self: center;
+        }
+        .arrow:after {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: -6px;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 12px solid var(--secondary-color);
+        }
+        .bubble {
+            background: #222;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.95em;
+            margin-top: 10px;
+            animation: pop 1s cubic-bezier(.17,.67,.83,.67) 1;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>What is Zero-Knowledge Proof?</h1>
+        <div class="explain">
+            <b>Zero-Knowledge Proof (ZKP)</b> lets you prove something is true <span style="color:#ff00ff;">without revealing the actual data</span>.<br><br>
+            In this KYC app, you prove you are over 18 <span style="color:#ffff00;">without sharing your birthdate</span>.<br>
+            <br>
+            <span style="color:#00ff00;">Your privacy is protected!</span>
+        </div>
+        <div class="zkp-animation">
+            <div class="user">
+                <span style="font-size:2.2em;">🧑‍💻</span>
+                <div class="bubble">I am over 18!<br><span style="font-size:0.8em;">(But I won't tell you my birthdate)</span></div>
+            </div>
+            <div class="arrow"></div>
+            <div class="server">
+                <span style="font-size:2.2em;">🖥️</span>
+                <div class="bubble">Proof received!<br><span style="font-size:0.8em;">Access granted.</span></div>
+            </div>
+        </div>
+        <div class="explain" style="margin-top:30px;">
+            <b>Why is this useful?</b><br>
+            - You keep control of your sensitive data.<br>
+            - Companies reduce risk and liability.<br>
+            - It's the future of privacy and compliance.
+        </div>
+        <a href="/dashboard" class="button">Back to Dashboard</a>
+    </div>
+</body>
+</html>

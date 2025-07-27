@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #0a0a0a;
+            --text-color: #00ff00;
+            --primary-color: #ff00ff;
+            --secondary-color: #ffff00;
+            --border-color: #00ff00;
+        }
+        body {
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+        }
+        header {
+            padding: 20px;
+            margin-bottom: 40px;
+            border-bottom: 4px solid var(--border-color);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+            color: var(--secondary-color);
+            text-shadow: 4px 4px 0px var(--primary-color);
+        }
+        .button {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: 4px solid var(--border-color);
+            padding: 15px 25px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+        .card {
+            background-color: #1a1a1a;
+            border: 4px solid var(--border-color);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dashboard</h1>
+            <a href="/zkp-explained" class="button" style="float:right; margin-top:-40px; font-size:0.8em; padding:8px 16px; background:#222; color:#ffff00; border-color:#ff00ff;">What is ZKP?</a>
+        </header>
+        <main>
+            <div class="card">
+                <h2>KYC Status</h2>
+                <p>Your identity is currently: <strong><%= typeof kycStatus !== 'undefined' ? kycStatus : 'Not Verified' %></strong></p>
+                <% if (kycStatus === 'Not Verified' || kycStatus === 'Rejected') { %>
+                  <a href="/kyc" class="button">Start KYC Process</a>
+                <% } else if (kycStatus === 'Pending') { %>
+                  <a href="/kyc" class="button" style="background-color: #555; cursor: not-allowed;">KYC Pending</a>
+                <% } else if (kycStatus === 'Verified') { %>
+                  <span class="button" style="background-color: #00ff00; color: #0a0a0a; cursor: default;">KYC Verified</span>
+                <% } %>
+            </div>
+            <div class="card">
+                <h2>Account</h2>
+                <p>Manage your profile and security settings.</p>
+                <a href="/profile" class="button">View Profile</a>
+                <a href="/settings" class="button" style="margin-left: 10px;">Settings</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

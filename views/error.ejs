@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #0a0a0a;
+            --text-color: #ff5555;
+            --primary-color: #ff00ff;
+            --border-color: #00ff00;
+        }
+        body {
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: #1a1a1a;
+            border: 4px solid var(--border-color);
+            padding: 40px 20px;
+        }
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .button {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: 4px solid var(--border-color);
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Error</h1>
+        <p><%= typeof message !== 'undefined' ? message : 'An unexpected error occurred.' %></p>
+        <a href="/dashboard" class="button">Back to Dashboard</a>
+    </div>
+</body>
+</html>

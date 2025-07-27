@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZKP KYC Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #0a0a0a;
+            --text-color: #00ff00;
+            --primary-color: #ff00ff;
+            --secondary-color: #ffff00;
+            --border-color: #00ff00;
+        }
+        body {
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+        }
+        header {
+            padding: 20px;
+            margin-bottom: 40px;
+            border-bottom: 4px solid var(--border-color);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+            color: var(--secondary-color);
+            text-shadow: 4px 4px 0px var(--primary-color);
+        }
+        .button {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: 4px solid var(--border-color);
+            padding: 15px 25px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ZKP-Based KYC System</h1>
+            <p>Welcome to the future of data privacy.</p>
+        </header>
+        <main>
+            <% if (isAuthenticated) { %>
+                <a href="/profile" class="button">View Your Profile</a>
+            <% } else { %>
+                <a href="/login" class="button">Login to Get Started</a>
+            <% } %>
+        </main>
+    </div>
+</body>
+</html>

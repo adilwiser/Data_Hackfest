@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYC Submitted</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #0a0a0a;
+            --text-color: #00ff00;
+            --primary-color: #ff00ff;
+            --secondary-color: #ffff00;
+            --border-color: #00ff00;
+        }
+        body {
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: #1a1a1a;
+            border: 4px solid var(--border-color);
+            padding: 40px 20px;
+        }
+        .success {
+            font-size: 2em;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 var(--primary-color);
+            animation: pop 1s cubic-bezier(.17,.67,.83,.67) 1;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        .explanation {
+            margin: 30px 0 20px 0;
+            font-size: 1.1em;
+        }
+        .button {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: 4px solid var(--border-color);
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success">KYC Submitted!</div>
+        <div class="explanation">
+            <span style="color: #ffff00;">Your proof has been sent.</span><br>
+            <span style="color: #00ff00;">Your actual date of birth was <b>never sent</b> to the server.</span><br><br>
+            <span style="color: #ff00ff;">This is the power of Zero-Knowledge Proofs!</span><br><br>
+            <% if (over18) { %>
+                <span style="color: #00ff00;">You have proven you are over 18 without revealing your birthdate.</span>
+            <% } else { %>
+                <span style="color: #ff5555;">You are not over 18. Only this fact was shared, not your birthdate.</span>
+            <% } %>
+        </div>
+        <a href="/dashboard" class="button">Back to Dashboard</a>
+    </div>
+</body>
+</html>
