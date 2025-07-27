@@ -90,8 +90,11 @@
                 <img id="profile-avatar" src="<%= user.picture %>" alt="User Avatar" onerror="this.onerror=null;this.src='/default-avatar.png';">
                 <h2 id="profile-name"><%= user.nickname %></h2>
                 <p id="profile-email"><%= user.email %></p>
-                <a href="/profile/edit" class="button">Edit Profile</a>
-                <a href="/logout" class="button" style="margin-left: 10px;">Logout</a>
+                <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:10px;">
+                  <a href="/profile/edit" class="button">Edit Profile</a>
+                  <a href="/dashboard" class="button" style="background-color: #555;">Back to Dashboard</a>
+                  <a href="/logout" class="button">Logout</a>
+                </div>
             </div>
         </main>
     </div>

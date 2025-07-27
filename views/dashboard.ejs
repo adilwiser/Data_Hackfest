@@ -67,20 +67,26 @@
 </head>
 <body>
     <div class="container">
-        <header>
+        <header style="position:relative;">
             <h1>Dashboard</h1>
-            <a href="/zkp-explained" class="button" style="float:right; margin-top:-40px; font-size:0.8em; padding:8px 16px; background:#222; color:#ffff00; border-color:#ff00ff;">What is ZKP?</a>
+            <a href="/zkp-explained" class="button" style="position:absolute; right:20px; top:20px; font-size:0.8em; padding:8px 16px; background:#222; color:#ffff00; border-color:#ff00ff; animation: pulse 1.2s infinite alternate; z-index:2;">What is ZKP?</a>
+            <style>
+            @keyframes pulse {
+                0% { box-shadow: 0 0 0 0 #ff00ff; }
+                100% { box-shadow: 0 0 16px 4px #ff00ff; }
+            }
+            </style>
         </header>
         <main>
             <div class="card">
                 <h2>KYC Status</h2>
                 <p>Your identity is currently: <strong><%= typeof kycStatus !== 'undefined' ? kycStatus : 'Not Verified' %></strong></p>
                 <% if (kycStatus === 'Not Verified' || kycStatus === 'Rejected') { %>
-                  <a href="/kyc" class="button">Start KYC Process</a>
+                  <a href="/kyc" class="button" style="margin-bottom:10px;">Start KYC Process</a>
                 <% } else if (kycStatus === 'Pending') { %>
-                  <a href="/kyc" class="button" style="background-color: #555; cursor: not-allowed;">KYC Pending</a>
+                  <span class="button" style="background-color: #555; cursor: not-allowed; margin-bottom:10px;">KYC Pending</span>
                 <% } else if (kycStatus === 'Verified') { %>
-                  <span class="button" style="background-color: #00ff00; color: #0a0a0a; cursor: default;">KYC Verified</span>
+                  <span class="button" style="background-color: #00ff00; color: #0a0a0a; cursor: default; margin-bottom:10px;">KYC Verified</span>
                 <% } %>
             </div>
             <div class="card">

@@ -84,11 +84,11 @@
         <header>
             <h1>KYC Verification</h1>
             <a href="/zkp-explained" class="button" style="float:right; margin-top:-40px; font-size:0.8em; padding:8px 16px; background:#222; color:#ffff00; border-color:#ff00ff;">What is ZKP?</a>
+        <header style="position:relative;">
+            <h1>KYC Verification</h1>
+            <a href="/zkp-explained" class="button" style="position:absolute; right:20px; top:20px; font-size:0.8em; padding:8px 16px; background:#222; color:#ffff00; border-color:#ff00ff; z-index:2;">What is ZKP?</a>
+            <a href="/dashboard" class="back-btn" style="margin-top:10px;">Back</a>
         </header>
-        <main>
-            <div class="form-container">
-                <form id="kyc-form" action="/api/kyc" method="POST" onsubmit="return showZkpModal(event)">
-                    <div class="form-field">
                         <label for="fullName">Full Name</label>
                         <input type="text" id="fullName" name="fullName" required>
                     </div>

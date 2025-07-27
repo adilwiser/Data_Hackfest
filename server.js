@@ -37,6 +37,23 @@ const managementClient = new ManagementClient({
 });
 
 // Routes
+// Simple admin route to approve KYC for demo
+app.get('/admin/approve/:userId', async (req, res) => {
+    try {
+        const db = app.locals.db;
+        const result = await db.collection('kyc_submissions').updateOne(
+            { userId: req.params.userId, status: 'pending' },
+            { $set: { status: 'approved' } }
+        );
+        if (result.matchedCount === 0) {
+            res.send('No pending KYC found for user: ' + req.params.userId + '<br><a href="/dashboard">Back to Dashboard</a>');
+        } else {
+            res.send('KYC approved for user: ' + req.params.userId + '<br><a href="/dashboard">Back to Dashboard</a>');
+        }
+    } catch (err) {
+        res.status(500).send('Error approving KYC');
+    }
+});
 app.get('/zkp-explained', (req, res) => {
     res.render('zkp-explained');
 });
@@ -74,17 +91,27 @@ app.get('/kyc', requiresAuth(), (req, res) => {
 });
 
 app.get('/profile', requiresAuth(), (req, res) => {
-    // Fallback for picture
-    let picture = req.oidc.user.picture;
-    if (!picture) {
-        if (req.oidc.user.email) {
-            picture = `https://s.gravatar.com/avatar/${req.oidc.user.email}?s=480&r=pg&d=retro`;
-        } else {
-            picture = '/default-avatar.png';
+    (async () => {
+        let picture = req.oidc.user.picture;
+        let nickname = req.oidc.user.nickname;
+        if (!picture) {
+            if (req.oidc.user.email) {
+                picture = `https://s.gravatar.com/avatar/${req.oidc.user.email}?s=480&r=pg&d=retro`;
+            } else {
+                picture = '/default-avatar.png';
+            }
         }
-    }
-    const updated = req.query.updated === '1';
-    res.render('profile', { user: { ...req.oidc.user, picture }, updated });
+        try {
+            const db = app.locals.db;
+            const edit = await db.collection('profile_edits').findOne({ userId: req.oidc.user.sub });
+            if (edit) {
+                if (edit.picture) picture = edit.picture;
+                if (edit.nickname) nickname = edit.nickname;
+            }
+        } catch (e) { /* ignore for demo */ }
+        const updated = req.query.updated === '1';
+        res.render('profile', { user: { ...req.oidc.user, picture, nickname }, updated });
+    })();
 });
 
 app.get('/profile/edit', requiresAuth(), (req, res) => {
@@ -93,18 +120,21 @@ app.get('/profile/edit', requiresAuth(), (req, res) => {
 });
 
 app.post('/profile/edit', requiresAuth(), async (req, res) => {
-    const { sub } = req.oidc.user;
+    // DEMO PATCH: Update both the local session and persist to MongoDB for demo
     const { nickname, picture } = req.body;
+    req.oidc.user.nickname = nickname;
+    req.oidc.user.picture = picture;
     try {
-        await managementClient.users.update({ id: sub }, {
-            nickname: nickname,
-            picture: picture,
-        });
-        // Instead of forcing logout, redirect to profile with a success message
+        const db = app.locals.db;
+        await db.collection('profile_edits').updateOne(
+            { userId: req.oidc.user.sub },
+            { $set: { nickname, picture } },
+            { upsert: true }
+        );
         res.redirect('/profile?updated=1');
     } catch (error) {
-        console.error('Error updating profile:', error);
-        res.status(500).render('error', { message: 'Failed to update profile.' });
+        console.error('Error saving profile edit:', error);
+        res.status(500).render('error', { message: 'Failed to save profile changes.' });
     }
 });
 
