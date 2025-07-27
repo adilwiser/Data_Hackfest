@@ -8,12 +8,6 @@ A privacy-first, pixel-art themed KYC web app using Node.js, Express, Auth0, Mon
 
 ---
 
-
-#ngork link: https://88ae86c345e4.ngrok-free.app
-
-
----
-
 ## ✨ Features
 - **Zero-Knowledge Proof (ZKP) Simulation:** Prove you're over 18 without sharing your birthdate.
 - **Passwordless Login Animation:** See how ZKPs power modern authentication.
