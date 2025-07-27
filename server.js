@@ -41,15 +41,20 @@ const managementClient = new ManagementClient({
 app.get('/admin/approve/:userId', async (req, res) => {
     try {
         const db = app.locals.db;
-        const result = await db.collection('kyc_submissions').updateOne(
+        // Find the most recent pending KYC for this user
+        const pending = await db.collection('kyc_submissions').findOne(
             { userId: req.params.userId, status: 'pending' },
+            { sort: { submittedAt: -1 } }
+        );
+        if (!pending) {
+            return res.send('No pending KYC found for user: ' + req.params.userId + '<br><a href="/dashboard">Back to Dashboard</a>');
+        }
+        await db.collection('kyc_submissions').updateOne(
+            { _id: pending._id },
             { $set: { status: 'approved' } }
         );
-        if (result.matchedCount === 0) {
-            res.send('No pending KYC found for user: ' + req.params.userId + '<br><a href="/dashboard">Back to Dashboard</a>');
-        } else {
-            res.send('KYC approved for user: ' + req.params.userId + '<br><a href="/dashboard">Back to Dashboard</a>');
-        }
+        // Redirect to dashboard for instant feedback
+        res.redirect('/dashboard');
     } catch (err) {
         res.status(500).send('Error approving KYC');
     }

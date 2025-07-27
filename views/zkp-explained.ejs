@@ -133,7 +133,13 @@
         <h1>What is Zero-Knowledge Proof?</h1>
         <div class="explain">
             <b>Zero-Knowledge Proof (ZKP)</b> lets you prove something is true <span style="color:#ff00ff;">without revealing the actual data</span>.<br><br>
-            In this KYC app, you prove you are over 18 <span style="color:#ffff00;">without sharing your birthdate</span>.<br>
+            <b>Real-world ZKP examples:</b>
+            <ul style="text-align:left; max-width:500px; margin:18px auto 0 auto; color:#ffff00; font-size:0.95em;">
+              <li><b>Age Verification:</b> Prove you are over 18 without sharing your birthdate (used in this app!)</li>
+              <li><b>Passwordless Login:</b> Prove you know your password without ever sending it (used in modern authentication!)</li>
+              <li><b>Private Voting:</b> Prove your vote was counted without revealing who you voted for (used in e-voting!)</li>
+              <li><b>Financial Proofs:</b> Prove you have enough funds for a transaction without revealing your balance (used in crypto/DeFi!)</li>
+            </ul>
             <br>
             <span style="color:#00ff00;">Your privacy is protected!</span>
         </div>
@@ -148,11 +154,23 @@
                 <div class="bubble">Proof received!<br><span style="font-size:0.8em;">Access granted.</span></div>
             </div>
         </div>
+        <div class="zkp-animation" style="margin-top:40px;">
+            <div class="user">
+                <span style="font-size:2.2em;">🔒</span>
+                <div class="bubble">I know my password!<br><span style="font-size:0.8em;">(But I never send it)</span></div>
+            </div>
+            <div class="arrow"></div>
+            <div class="server">
+                <span style="font-size:2.2em;">🔑</span>
+                <div class="bubble">Proof received!<br><span style="font-size:0.8em;">Logged in securely.</span></div>
+            </div>
+        </div>
         <div class="explain" style="margin-top:30px;">
             <b>Why is this useful?</b><br>
             - You keep control of your sensitive data.<br>
             - Companies reduce risk and liability.<br>
-            - It's the future of privacy and compliance.
+            - It's the future of privacy and compliance.<br>
+            - ZKPs are used in blockchains, authentication, voting, and more!
         </div>
         <a href="/dashboard" class="button">Back to Dashboard</a>
     </div>

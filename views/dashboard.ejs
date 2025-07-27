@@ -88,6 +88,11 @@
                 <% } else if (kycStatus === 'Verified') { %>
                   <span class="button" style="background-color: #00ff00; color: #0a0a0a; cursor: default; margin-bottom:10px;">KYC Verified</span>
                 <% } %>
+                <div style="margin-top:18px; font-size:0.85em; color:#aaa; word-break:break-all;">
+                  <b>Your userId:</b> <span id="userid"><%= user.sub %></span>
+                  <br>
+                  <span style="color:#ff00ff;">(For admin/demo: <a href="/admin/approve/<%= user.sub %>" style="color:#ffff00; text-decoration:underline;">Approve my KYC</a>)</span>
+                </div>
             </div>
             <div class="card">
                 <h2>Account</h2>
