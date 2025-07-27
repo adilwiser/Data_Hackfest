@@ -4,77 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KYC Verification</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --background-color: #0a0a0a;
-            --text-color: #00ff00;
-            --primary-color: #ff00ff;
-            --secondary-color: #ffff00;
-            --border-color: #00ff00;
-        }
         body {
             font-family: 'Press Start 2P', cursive;
+            background-color: #0a0a0a;
+            color: #00ff00;
             margin: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            text-align: center;
         }
         .container {
-            width: 90%;
-            max-width: 800px;
+            max-width: 500px;
+            margin: 40px auto;
+            background: #1a1a1a;
+            border: 4px solid #00ff00;
+            border-radius: 12px;
+            padding: 32px 24px 24px 24px;
         }
         header {
-            padding: 20px;
-            margin-bottom: 40px;
-            border-bottom: 4px solid var(--border-color);
+            position: relative;
+            margin-bottom: 24px;
         }
         header h1 {
             margin: 0;
-            font-size: 2em;
-            color: var(--secondary-color);
-            text-shadow: 4px 4px 0px var(--primary-color);
+            color: #ffff00;
+            text-shadow: 2px 2px 0px #ff00ff;
+            font-size: 1.5em;
         }
         .button {
-            background-color: var(--primary-color);
-            color: var(--background-color);
-            border: 4px solid var(--border-color);
-            padding: 15px 25px;
+            background-color: #ff00ff;
+            color: #0a0a0a;
+            border: 2px solid #00ff00;
+            padding: 10px 20px;
             font-size: 1em;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
             text-transform: uppercase;
-            margin-top: 20px;
-        }
-        .form-container {
-            background-color: #1a1a1a;
-            border: 4px solid var(--border-color);
-            padding: 30px;
-            text-align: left;
+            margin-top: 18px;
+            margin-right: 8px;
         }
         .form-field {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
+            text-align: left;
         }
         .form-field label {
             display: block;
-            margin-bottom: 8px;
-            font-size: 0.8em;
+            margin-bottom: 6px;
+            color: #ffff00;
         }
         .form-field input {
             width: 100%;
             padding: 10px;
-            background-color: var(--background-color);
-            border: 2px solid var(--border-color);
-            color: var(--text-color);
+            background-color: #222;
+            border: 2px solid #00ff00;
+            color: #00ff00;
             font-family: 'Press Start 2P', cursive;
-            font-size: 0.8em;
+            font-size: 0.9em;
             box-sizing: border-box;
         }
     </style>
@@ -83,74 +69,48 @@
     <div class="container">
         <header>
             <h1>KYC Verification</h1>
-            <a href="/zkp-explained" class="button" style="float:right; margin-top:-40px; font-size:0.8em; padding:8px 16px; background:#222; color:#ffff00; border-color:#ff00ff;">What is ZKP?</a>
-        <header style="position:relative;">
-            <h1>KYC Verification</h1>
             <a href="/zkp-explained" class="button" style="position:absolute; right:20px; top:20px; font-size:0.8em; padding:8px 16px; background:#222; color:#ffff00; border-color:#ff00ff; z-index:2;">What is ZKP?</a>
-            <a href="/dashboard" class="back-btn" style="margin-top:10px;">Back</a>
+            <a href="/dashboard" class="button" style="background:#555; color:#fff; border-color:#00ff00; margin-top:10px;">Back</a>
         </header>
-                        <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" name="fullName" required>
-                    </div>
-                    <div class="form-field">
-                        <label for="dob">Date of Birth</label>
-                        <input type="date" id="dob" name="dob" required>
-                    </div>
-                    <input type="hidden" id="over18" name="over18">
-                    <input type="hidden" id="zkpProof" name="zkpProof">
-                     <div class="form-field">
-                        <label for="country">Country</label>
-                        <input type="text" id="country" name="country" required>
-                    </div>
-                    <div class="form-field">
-                        <label for="govId">Government ID Number</label>
-                        <input type="text" id="govId" name="govId" required>
-                    </div>
-                    <div class="form-field">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" name="address" required>
-                    </div>
-                    <button type="submit" class="button">Submit for Verification</button>
-                    <a href="/dashboard" class="button" style="background-color: #555; margin-left: 10px;">Back to Dashboard</a>
-                </form>
+        <form method="POST" action="/api/kyc" id="kycForm">
+            <div class="form-field">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required>
             </div>
-            <!-- ZKP Privacy Modal -->
-            <div id="zkp-modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.95); color:#00ff00; font-family:'Press Start 2P',cursive; align-items:center; justify-content:center; flex-direction:column;">
-                <div style="background:#1a1a1a; border:4px solid #00ff00; padding:40px 30px; max-width:90vw; margin:auto; text-align:center;">
-                    <h2 style="color:#ffff00; text-shadow:2px 2px 0 #ff00ff;">Zero-Knowledge Proof in Action!</h2>
-                    <p style="font-size:1em; margin:30px 0;">Your sensitive data (name, address, ID) <span style="color:#ff00ff;">never leaves your device</span>.<br>Only a cryptographic proof is sent to the server.<br><br><span style="color:#ffff00;">This keeps your privacy safe!</span></p>
-                    <button onclick="submitKycNow()" class="button" style="margin-top:20px;">Send Proof</button>
-                    <button onclick="closeZkpModal()" class="button" style="background-color:#555; margin-left:10px;">Cancel</button>
-                </div>
+            <div class="form-field">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
             </div>
-        </main>
+            <input type="hidden" id="over18" name="over18">
+            <input type="hidden" id="zkpProof" name="zkpProof">
+            <div class="form-field">
+                <label for="country">Country</label>
+                <input type="text" id="country" name="country" required>
+            </div>
+            <button type="submit" class="button">Submit KYC</button>
+        </form>
     </div>
-<script>
-    function showZkpModal(event) {
-        event.preventDefault();
-        document.getElementById('zkp-modal').style.display = 'flex';
-        return false;
-    }
-    function closeZkpModal() {
-        document.getElementById('zkp-modal').style.display = 'none';
-    }
-    function submitKycNow() {
-        // Calculate if user is over 18 and generate a fake ZKP proof
+    <script>
+    // Calculate over18 and ZKP proof before submitting
+    document.getElementById('kycForm').addEventListener('submit', function(e) {
         const dob = document.getElementById('dob').value;
-        const birthDate = new Date(dob);
-        const today = new Date();
-        let age = today.getFullYear() - birthDate.getFullYear();
-        const m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
+        const fullName = document.getElementById('fullName').value;
+        const country = document.getElementById('country').value;
+        // Calculate age
+        let over18 = false;
+        if (dob) {
+            const birth = new Date(dob);
+            const today = new Date();
+            let age = today.getFullYear() - birth.getFullYear();
+            const m = today.getMonth() - birth.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+                age--;
+            }
+            over18 = age >= 18;
         }
-        const over18 = age >= 18;
-        document.getElementById('over18').value = over18 ? 'true' : 'false';
-        // Simulate a ZKP proof (in real ZKP, this would be a cryptographic proof)
-        document.getElementById('zkpProof').value = btoa(`${dob}:${over18}`);
-        document.getElementById('kyc-form').onsubmit = null;
-        document.getElementById('kyc-form').submit();
-    }
-</script>
+        document.getElementById('over18').value = over18;
+        // Simulate ZKP proof (base64 encode for demo)
+        document.getElementById('zkpProof').value = btoa(fullName + ':' + dob + ':' + country);
+    });
+    </script>
 </body>
-</html>
