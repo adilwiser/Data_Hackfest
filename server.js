@@ -170,22 +170,6 @@ app.post('/api/kyc', requiresAuth(), async (req, res) => {
     }
 });
 
-app.get('/password/change', requiresAuth(), (req, res) => {
-    // This route will initiate the password change flow
-    // Note: You need to configure the "Password Change" settings in your Auth0 dashboard
-    // and set the redirect URL to your dashboard or settings page.
-    const options = {
-        returnTo: 'http://localhost:3000/settings',
-        user_id: req.oidc.user.sub
-    };
-    managementClient.tickets.createPasswordChangeTicket(options, (err, ticket) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send('Failed to create password change ticket.');
-        }
-        res.redirect(ticket.ticket);
-    });
-});
 
 
 // Database and Server Initialization

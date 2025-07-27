@@ -78,8 +78,19 @@
             </div>
             <div class="card">
                 <h2>Security</h2>
-                <p>Change your password.</p>
-                <a href="/password/change" class="button">Change Password</a>
+                <p>You can log out of your account below. To reset your password, log out and click <b>"Forgot password?"</b> on the login screen.</p>
+                <form action="/logout" method="post" style="margin-bottom: 18px;">
+                    <button type="submit" class="button">Log Out</button>
+                </form>
+                <div style="font-size:0.9em; color:#aaa; text-align:left; margin:0 auto; max-width:500px;">
+                  <b>Security Notes:</b>
+                  <ul style="text-align:left;">
+                    <li>We never store your password or sensitive data.</li>
+                    <li>All authentication is handled securely by Auth0.</li>
+                    <li>Zero-Knowledge Proofs (ZKP) are used to prove your age without revealing your date of birth.</li>
+                    <li>For maximum privacy, you can use a local avatar and nickname.</li>
+                  </ul>
+                </div>
             </div>
              <a href="/dashboard" class="button" style="background-color: #555;">Back to Dashboard</a>
         </main>
